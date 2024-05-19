@@ -1,0 +1,22 @@
+*{
+    background-color: aquamarine;
+}
+#header-img{
+    height: 200px;
+    border-radius: 50%;
+}
+
+h1{
+    color: aliceblue;
+    font-size: 70px;
+    text-align: center;
+}
+
+h3{
+    color: aliceblue;
+    font-size: 40px;
+    text-align: center;
+}
+.header{
+    text-align: center;
+}
