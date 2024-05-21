@@ -3,6 +3,39 @@ body{
 }
 
 
+/* Selector */
+h1{
+    color: #333333;
+    font-size: 80px;
+    text-align: center;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p {
+    color:white;
+}
+
+h2{
+    color: #333333;
+}
+
+
+h3{
+    color: #333333;
+    font-size: 40px;
+    text-align: center;
+}
+
+
+p{
+    color: #333333;
+    font-size: 20px;
+}
+
+
+
 /* Part 1: Navbar */
 
 /* General style rule set for all items in ul */
@@ -51,6 +84,15 @@ body{
 }
 
 
+/* Add style to button */
+#theme-button{
+
+}
+
+/* Customize Dark Mode Theme */
+.dark-mode{
+    background-color: #1a1a1a;
+}
 
 
 
@@ -172,13 +214,15 @@ body{
 
 /* Footer */
 
-.footer{
+.footer-container{
     position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #d4e4f8;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-text{
@@ -188,31 +232,6 @@ body{
     margin: 5px;
 
 }
-
-
-/* Selector */
-h1{
-    color: #333333;
-    font-size: 80px;
-    text-align: center;
-}
-
-h2{
-    color: #333333;
-}
-
-h3{
-    color: #333333;
-    font-size: 40px;
-    text-align: center;
-}
-
-p{
-    color: #333333;
-    font-size: 20px;
-}
-
-
 
 
 
