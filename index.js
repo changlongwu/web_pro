@@ -3,7 +3,7 @@
 let thememButton = document.querySelector("#theme-button")
 
 let test = document.querySelector('.footer-container')
-console.log(test)
+// console.log(test)
 
 // TODO: Complete the toggleDarkMode function
 const toggleDarkMode = () => {
@@ -58,4 +58,63 @@ const addSignature = () => {
 }
 
 // Add a click event listener to the sign now button here
-petitionSignUpBtn.addEventListener('click',addSignature)
+// petitionSignUpBtn.addEventListener('click',addSignature)
+
+
+
+// TODO: Remove the click event listener that calls addSignature()
+
+// TODO: Complete validation form
+
+const validateForm = () => {
+
+    let containsErrors =false;
+
+    // the form elements
+    var petitionInputs = document.getElementById("sign-petition").elements;
+
+
+
+    // TODO: Loop through all inputs
+    for(let i =0; i<petitionInputs.length;i++){
+        
+
+        if (petitionInputs[i].value.length<2){
+            containsErrors= true;
+            // console.log('empty')
+            // console.log(petitionInputs[i])
+            petitionInputs[i].classList.add('error')
+        }
+        else{
+            petitionInputs[i].classList.remove('error')
+        }
+        console.log(containsErrors)
+
+    }
+
+    // check if email contains '.com'
+    let email = document.getElementById('email')
+
+    if (!email.value.includes('.com')){
+        containsErrors=true
+        email.classList.add('error')
+    }
+    else{
+        email.classList.remove('error')
+    }
+    if (containsErrors==false){
+        addSignature();
+        for (let i =0; i<petitionInputs.length;i++){
+            petitionInputs[i].value=""
+        }
+    }
+    
+    // TODO: Validate the value of each input
+  
+  
+  
+    // TODO: Call addSignature() and clear fields if no errors
+  
+  }
+  
+  petitionSignUpBtn.addEventListener('click', validateForm);
