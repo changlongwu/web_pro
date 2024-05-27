@@ -18,7 +18,7 @@ const toggleDarkMode = () => {
 thememButton.addEventListener("click",toggleDarkMode)
 
 
-
+let person;
 
 
 // The petition Sign up 
@@ -73,7 +73,9 @@ const validateForm = () => {
     // the form elements
     var petitionInputs = document.getElementById("sign-petition").elements;
 
-
+    person ={
+        'name':petitionInputs[0].value,
+    }
 
     // TODO: Loop through all inputs
     for(let i =0; i<petitionInputs.length;i++){
@@ -107,6 +109,7 @@ const validateForm = () => {
         for (let i =0; i<petitionInputs.length;i++){
             petitionInputs[i].value=""
         }
+        toggleModal(person);
     }
     
     // TODO: Validate the value of each input
@@ -118,3 +121,85 @@ const validateForm = () => {
   }
   
   petitionSignUpBtn.addEventListener('click', validateForm);
+
+
+  let animation ={
+    "revealDistance": 150,
+    "initialOpacity": 0,
+    "transitionDelay": 0,
+    "transitionDuration": "2s",
+    "transitionProperty": "all",
+    "transitionTimingFunction": "ease"
+  }
+
+
+  let revealableContainers = document.querySelectorAll('.revealable')
+  console.log(revealableContainers)
+
+  const reveal =() =>{
+    for (let i = 0; i<revealableContainers.length;i++){
+        let windowHeight = window.innerHeight;
+        let topOfRevealableContainer = revealableContainers[i].getBoundingClientRect().top;
+        console.log('i top' +topOfRevealableContainer);
+        if(topOfRevealableContainer < windowHeight - animation.revealDistance){
+            revealableContainers[i].classList.add('active');
+        }else{
+            revealableContainers[i].classList.remove('active');
+        }
+    }
+  }
+
+  window.addEventListener('scroll',reveal);
+
+
+//   remove animation
+let removeAnimationButton = document.querySelector("#reduce-animation")
+
+// complete the function
+const removeAnimation =()=>{
+    for (let i = 0; i<revealableContainers.length;i++){
+        revealableContainers[i].classList.toggle('revealable');
+    }
+}
+
+// click the button add the event listener
+removeAnimationButton.addEventListener('click',removeAnimation)
+
+
+// modal
+let modal = document.querySelector("#thanks-modal");
+const toggleModal=(person)=>{
+ let modal = document.querySelector("#thanks-modal");
+ let modalContent = document.querySelector("#thanks-modal-content");
+ console.log(modalContent);
+ modalContent.innerHTML = person.name + ' thanks for your support!' ;
+ modal.style.display = "flex";
+
+ setTimeout(() => {
+    modal.style.display = "none";
+    clearInterval(intervalId);
+ }, 4000);
+
+ intervalId = setInterval(scaleImage,500);
+}
+
+//  animation: scale the modal image
+let scaleFactor = 1;
+let modalImage = document.querySelector('.modal-content img');
+
+
+const scaleImage = () =>{
+    // toggle the factor between 1 and 0.8
+    if (scaleFactor===1){
+        scaleFactor=0.8;
+    }
+    else if (scaleFactor===0.8){
+        scaleFactor=1;
+    }
+    modalImage.style.transform = `scale(${scaleFactor})`;
+}
+
+modalBtn = document.querySelector('#thanks-modal-button');
+modalBtn.addEventListener('click',()=>{
+    modal.style.display = "none";
+})
